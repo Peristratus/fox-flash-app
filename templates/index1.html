@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Foxx Games Chat Room</title>
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<body class= "text-center">
+    <form class="form-signin" action="{{url_for('chat')}}" method="POST">
+        <h3 class="mb-3 font-weight-normal" id="foxh2" >Foxx Games Chat</h3>
+        <input type="text" id="username" class="form-control" placeholder="Username" required autofocus><br>
+        <input type="text" id="room" name="room" class="form-control" placeholder="Room" required><br>
+        <button class ="btn btn-lg btn-primary btn-block" value="submit">Start Chat</button>
+
+    </form>
+</body>
+</html>
