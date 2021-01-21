@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Foxx Games Chat Room</title>
+    <title>Foxx Games Chat Room 1</title>
     <link href="../static/bootstrap.min.css" rel="stylesheet">
     <link href="../static/style.css" rel="stylesheet">
 
@@ -19,6 +19,24 @@
                     $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
+                socket.on('message', function(data) {
+                    $('#chat').val($('#chat').val() + data.msg + '\n');
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                });
+                 $('#send').click(function(e) {
+                        text = $('#text').val();
+                        $('#text').val('');
+                        socket.emit('text', {msg: text});
+                });
+            });
+
+            function leave_room() {
+                socket.emit('left', {}, function() {
+                    socket.disconnect();
+                    // go back to the login page
+                    window.location.href = "{{ url_for('index') }}";
+                });
+            }
 
        </script>
 </head>
@@ -29,7 +47,7 @@
      <textarea id= "chat" cols= "70" rows="10" placeholder= "No message yet. start one..."></textarea><br>
      <input type="text" id="text" size= "60" placeholder= "Enter yoyr message here"/>
      <button type= "button" id="send" class="btn btn-success">SEND</button><br><br>
-     <center> <button type="button" class ="btn btn-danger">Leave this Chat</button></center>
+      <center><button type="button" class="btn btn-danger" onclick="leave_room()">Leave this Chat</button></center>
      </div>
 </body>
 </html>
