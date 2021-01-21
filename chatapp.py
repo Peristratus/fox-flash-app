@@ -45,7 +45,7 @@ def text(message):
     emit('message', {'msg': + session.get('username') + ' : ' + message['msg']}, room=room)
 
 
-@socket.on('left', namescape='/chat')
+@socketio.on('left', namescape='/chat')
 def left(message):
     room = session.get('room')
      leave_room(room)
