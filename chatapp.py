@@ -2,23 +2,26 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 
-app =Flask(__name__)
+app = Flask(__name__)
 app.debug = True
-app.config['SECRET_TYPE'] = 'secret'
-app.config['SESSION_TYPE'] = "filesystem"
+app.config['SECRET_KEY'] = 'secret'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 Session(app)
 
+socketio = SocketIO(app, manage_session=False)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return "render_template('index1.html')
+    return render_template('index.html')
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    if(request.method== 'POST'):
+    if(request.method=='POST'):
         username = request.form['username']
         room = request.form['room']
-        #store the data session
+        #Store the data in session
         session['username'] = username
         session['room'] = room
         return render_template('chat.html', session = session)
