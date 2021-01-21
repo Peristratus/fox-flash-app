@@ -45,12 +45,12 @@ def text(message):
     emit('message', {'msg': + session.get('username') + ' : ' + message['msg']}, room=room)
 
 
-@socketio.on('left', namescape='/chat')
+@socketio.on('left', namespace='/chat')
 def left(message):
     room = session.get('room')
-     leave_room(room)
+    leave_room(room)
     session.clear()
     emit('status', {'msg': username + ' has left the room.'}, room=room)
 
 if __name__ =="__main__":
-     socketio.run(chatapp)
+     socketio.run(app)
