@@ -148,6 +148,16 @@ nav ul li a:hover {
     font-size: 0.85em;
     font-weight: 600;
 }
+
+#chatRoom {
+    background-color: #FFB320;
+    color: #131313;
+    border-radius: 20px;
+    padding: 15px 15px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
 /* end: header styles */
 
 /* start: hero styles */
